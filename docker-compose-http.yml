@@ -1,0 +1,63 @@
+version: '3'
+services:
+  proxy:
+    image: ladypython/proxy-http:latest
+    build: src/proxy/http
+    ports:
+      - "2000:2000"
+
+  _serdes:
+    image: ladypython/serdes-http:latest
+    build:
+      context: src/serdes
+      dockerfile: http/Dockerfile
+    command: [ 'echo', 'build completed' ]
+
+  native:
+    image: ladypython/serdes-http:latest
+    environment:
+      - SERDES_FORMAT=native
+    depends_on:
+      - _serdes
+
+  xml:
+    image: ladypython/serdes-http:latest
+    environment:
+      - SERDES_FORMAT=xml
+    depends_on:
+      - _serdes
+
+  json:
+    image: ladypython/serdes-http:latest
+    environment:
+      - SERDES_FORMAT=json
+    depends_on:
+      - _serdes
+
+  protobuf:
+    image: ladypython/serdes-http:latest
+    environment:
+      - SERDES_FORMAT=protobuf
+    depends_on:
+      - _serdes
+
+  avro:
+    image: ladypython/serdes-http:latest
+    environment:
+      - SERDES_FORMAT=avro
+    depends_on:
+      - _serdes
+
+  yaml:
+    image: ladypython/serdes-http:latest
+    environment:
+      - SERDES_FORMAT=yaml
+    depends_on:
+      - _serdes
+
+  msgpack:
+    image: ladypython/serdes-http:latest
+    environment:
+      - SERDES_FORMAT=msgpack
+    depends_on:
+      - _serdes

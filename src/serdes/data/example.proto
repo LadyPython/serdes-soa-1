@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message EmptyExample {
+  string string = 1;
+  repeated int32 array = 2;
+  map<string, string> dictionary = 3;
+  uint64 integer = 4;
+  double double = 5;
+  bool boolean = 6;
+}
+
+message Example {
+  string string = 1;
+  repeated int32 array = 2;
+  map<string, string> dictionary = 3;
+  uint64 integer = 4;
+  double double = 5;
+  bool boolean = 6;
+  EmptyExample empty_subclass = 7;
+}
