@@ -3,7 +3,7 @@ import socket
 
 
 def get(request, addr):
-    sock.sendto(b"get_result", addr)
+    sock.sendto(request, addr)
     return sock.recv(1024)
 
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
             request, format = data.split()
             if format == b"all":
                 sock.sendto(request, (MCAST_GRP, SERDES_UDP_PORT))
-                results = [sock.recv(1024) for i in range(FORMAT_CNT)]
+                results = [sock.recv(64 * 1024 - 1) for i in range(FORMAT_CNT)]
                 sock.sendto(b'\n'.join(results), addr)
             else:
                 sock.sendto(get(request, (format, SERDES_UDP_PORT)), addr)
