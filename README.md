@@ -90,7 +90,7 @@ curl -X GET "http://localhost:2000/get_result?format=all"
 ```
 
 # Implementation details
-Очень продвинутый 🐍💪
+Очень продвинутый с образами в docker hub 🐍💪
 
 ## UDP version
 [/src/proxy/udp](/src/proxy/udp)
